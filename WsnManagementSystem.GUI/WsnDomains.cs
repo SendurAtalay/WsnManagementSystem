@@ -22,5 +22,44 @@ namespace WsnManagementSystem.GUI
         {
             dgvDomains.DataSource = wsnDomainBusiness.GetAll();
         }
+
+        private void dgvDomains_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            txtDomainName.Text = dgvDomains.Rows[e.RowIndex].Cells["WsnDomainName"].Value.ToString();
+            txtDomainID.Text = dgvDomains.Rows[e.RowIndex].Cells["WsnDomainID"].Value.ToString();
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            wsnDomainBusiness.Insert(new DataLayer.WsnDomain
+            {
+                WsnDomainName = txtDomainName.Text,
+                
+            });
+            dgvDomains.DataSource = wsnDomainBusiness.GetAll();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            wsnDomainBusiness.Update(new DataLayer.WsnDomain
+            {
+                WsnDomainID = Convert.ToInt32(txtDomainID.Text),
+                WsnDomainName = txtDomainName.Text,
+                
+            });
+            dgvDomains.DataSource = wsnDomainBusiness.GetAll();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            wsnDomainBusiness.Delete(Convert.ToInt32(txtDomainID.Text));
+            dgvDomains.DataSource = wsnDomainBusiness.GetAll();
+        }
+
+        private void btnSet_Click(object sender, EventArgs e)
+        {
+            txtDomainID.Clear();
+            txtDomainName.Clear();
+        }
     }
 }

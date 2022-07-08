@@ -25,22 +25,43 @@ namespace WsnManagementSystem.GUI
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-
+            sensorBusiness.Insert(new DataLayer.Sensor
+            {
+                SensorName = txtSensorName.Text,
+                SensorDefination = txtSensorDefinition.Text,
+            });
+            dgvSensors.DataSource = sensorBusiness.GetAll();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            sensorBusiness.Update(new DataLayer.Sensor
+            {
+                SensorID = Convert.ToInt32(txtSensorID.Text),
+                SensorName = txtSensorName.Text,
+                SensorDefination = txtSensorDefinition.Text
+            });
+            dgvSensors.DataSource = sensorBusiness.GetAll();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            sensorBusiness.Delete(Convert.ToInt32(txtSensorID.Text));
+            dgvSensors.DataSource = sensorBusiness.GetAll();
         }
 
         private void btnSet_Click(object sender, EventArgs e)
         {
+            txtSensorID.Clear();
+            txtSensorName.Clear();
+            txtSensorDefinition.Clear();
+        }
 
+        private void dgvSensors_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            txtSensorName.Text = dgvSensors.Rows[e.RowIndex].Cells["SensorName"].Value.ToString();
+            txtSensorID.Text = dgvSensors.Rows[e.RowIndex].Cells["SensorID"].Value.ToString();
+            txtSensorDefinition.Text = dgvSensors.Rows[e.RowIndex].Cells["SensorDefination"].Value.ToString();
         }
     }
 }

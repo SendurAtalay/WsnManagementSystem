@@ -23,5 +23,43 @@ namespace WsnManagementSystem.GUI
             dgvWsnStatus.DataSource = wsnStatueBusiness.GetAll();
 
         }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            wsnStatueBusiness.Insert(new DataLayer.WsnStatu
+            {
+                WsnStatueName = txtStatueName.Text,
+            });
+            dgvWsnStatus.DataSource = wsnStatueBusiness.GetAll();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            wsnStatueBusiness.Update(new DataLayer.WsnStatu
+            {
+                WsnStatueID = Convert.ToInt32(txtStatueID.Text),
+                WsnStatueName = txtStatueName.Text,
+            });
+            dgvWsnStatus.DataSource = wsnStatueBusiness.GetAll();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            wsnStatueBusiness.Delete(Convert.ToInt32(txtStatueID.Text));
+            dgvWsnStatus.DataSource = wsnStatueBusiness.GetAll();
+        }
+
+        private void btnSet_Click(object sender, EventArgs e)
+        {
+            txtStatueID.Clear();
+            txtStatueName.Clear();
+        }
+
+        private void dgvWsnStatus_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            txtStatueName.Text = dgvWsnStatus.Rows[e.RowIndex].Cells["WsnStatueName"].Value.ToString();
+            txtStatueID.Text = dgvWsnStatus.Rows[e.RowIndex].Cells["WsnStatueID"].Value.ToString();
+           
+        }
     }
 }

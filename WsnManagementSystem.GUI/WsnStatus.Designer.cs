@@ -58,87 +58,90 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox1.Location = new System.Drawing.Point(11, 6);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Location = new System.Drawing.Point(15, 7);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(582, 196);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(776, 241);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "WsnStatus";
             // 
             // txtStatueName
             // 
-            this.txtStatueName.Location = new System.Drawing.Point(274, 70);
-            this.txtStatueName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtStatueName.MinimumSize = new System.Drawing.Size(212, 29);
+            this.txtStatueName.Location = new System.Drawing.Point(365, 86);
+            this.txtStatueName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtStatueName.MinimumSize = new System.Drawing.Size(281, 35);
             this.txtStatueName.Multiline = true;
             this.txtStatueName.Name = "txtStatueName";
-            this.txtStatueName.Size = new System.Drawing.Size(212, 29);
+            this.txtStatueName.Size = new System.Drawing.Size(281, 35);
             this.txtStatueName.TabIndex = 2;
             // 
             // txtStatueID
             // 
-            this.txtStatueID.Location = new System.Drawing.Point(274, 19);
-            this.txtStatueID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtStatueID.MinimumSize = new System.Drawing.Size(212, 29);
+            this.txtStatueID.Location = new System.Drawing.Point(365, 23);
+            this.txtStatueID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtStatueID.MinimumSize = new System.Drawing.Size(281, 35);
             this.txtStatueID.Multiline = true;
             this.txtStatueID.Name = "txtStatueID";
-            this.txtStatueID.Size = new System.Drawing.Size(212, 29);
+            this.txtStatueID.Size = new System.Drawing.Size(281, 35);
             this.txtStatueID.TabIndex = 2;
             // 
             // btnSet
             // 
             this.btnSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnSet.Location = new System.Drawing.Point(425, 128);
-            this.btnSet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSet.Location = new System.Drawing.Point(567, 158);
+            this.btnSet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSet.Name = "btnSet";
-            this.btnSet.Size = new System.Drawing.Size(118, 41);
+            this.btnSet.Size = new System.Drawing.Size(157, 50);
             this.btnSet.TabIndex = 1;
             this.btnSet.Text = "SET";
             this.btnSet.UseVisualStyleBackColor = true;
+            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnDelete.Location = new System.Drawing.Point(292, 128);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Location = new System.Drawing.Point(389, 158);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(118, 41);
+            this.btnDelete.Size = new System.Drawing.Size(157, 50);
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnUpdate.Location = new System.Drawing.Point(159, 128);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdate.Location = new System.Drawing.Point(212, 158);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(118, 41);
+            this.btnUpdate.Size = new System.Drawing.Size(157, 50);
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnInsert
             // 
             this.btnInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnInsert.Location = new System.Drawing.Point(26, 128);
-            this.btnInsert.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInsert.Location = new System.Drawing.Point(35, 158);
+            this.btnInsert.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(118, 41);
+            this.btnInsert.Size = new System.Drawing.Size(157, 50);
             this.btnInsert.TabIndex = 1;
             this.btnInsert.Text = "INSERT";
             this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(5, 70);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(7, 86);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 20);
+            this.label2.Size = new System.Drawing.Size(178, 25);
             this.label2.TabIndex = 0;
             this.label2.Text = "WsnStatue Name :";
             // 
@@ -146,63 +149,77 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(5, 27);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(7, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 20);
+            this.label1.Size = new System.Drawing.Size(145, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "WsnStatue ID :";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgvWsnStatus);
-            this.groupBox2.Location = new System.Drawing.Point(11, 207);
+            this.groupBox2.Location = new System.Drawing.Point(15, 255);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(582, 193);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(776, 238);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "List";
             // 
             // dgvWsnStatus
             // 
+            this.dgvWsnStatus.AllowUserToAddRows = false;
+            this.dgvWsnStatus.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvWsnStatus.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgvWsnStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvWsnStatus.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.WsnStatueID,
             this.WsnStatueName,
             this.SensorNetworks});
             this.dgvWsnStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvWsnStatus.Location = new System.Drawing.Point(3, 16);
+            this.dgvWsnStatus.Location = new System.Drawing.Point(4, 19);
+            this.dgvWsnStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvWsnStatus.Name = "dgvWsnStatus";
-            this.dgvWsnStatus.Size = new System.Drawing.Size(576, 174);
+            this.dgvWsnStatus.RowHeadersWidth = 51;
+            this.dgvWsnStatus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvWsnStatus.Size = new System.Drawing.Size(768, 215);
             this.dgvWsnStatus.TabIndex = 0;
+            this.dgvWsnStatus.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvWsnStatus_RowEnter);
             // 
             // WsnStatueID
             // 
             this.WsnStatueID.DataPropertyName = "WsnStatueID";
             this.WsnStatueID.HeaderText = "Statue No";
+            this.WsnStatueID.MinimumWidth = 6;
             this.WsnStatueID.Name = "WsnStatueID";
+            this.WsnStatueID.Width = 95;
             // 
             // WsnStatueName
             // 
             this.WsnStatueName.DataPropertyName = "WsnStatueName";
             this.WsnStatueName.HeaderText = "Statue Name";
+            this.WsnStatueName.MinimumWidth = 6;
             this.WsnStatueName.Name = "WsnStatueName";
+            this.WsnStatueName.Width = 114;
             // 
             // SensorNetworks
             // 
             this.SensorNetworks.DataPropertyName = "SensorNetworks";
             this.SensorNetworks.HeaderText = "Sensor Networks";
+            this.SensorNetworks.MinimumWidth = 6;
             this.SensorNetworks.Name = "SensorNetworks";
             this.SensorNetworks.Visible = false;
+            this.SensorNetworks.Width = 125;
             // 
             // WsnStatus
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 421);
+            this.ClientSize = new System.Drawing.Size(817, 518);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "WsnStatus";
             this.Text = "WsnStatus";
             this.Load += new System.EventHandler(this.WsnStatus_Load);

@@ -16,7 +16,7 @@ namespace WsnManagementSystem.GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SensorMeasurementTypes());
+            Application.Run(new WsnStatus());
         }
     }
 }
