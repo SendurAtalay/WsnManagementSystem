@@ -10,24 +10,14 @@
 namespace WsnManagementSystem.DataLayer
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class SensorNetwork
+    public partial class SP_SensorNetworks_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SensorNetwork()
-        {
-            this.WsnCoordinators = new HashSet<WsnCoordinator>();
-        }
-    
         public int SensorNetworkID { get; set; }
         public string SensorNetworkName { get; set; }
         public string SensorNetworkDescription { get; set; }
         public Nullable<int> DomainID { get; set; }
         public System.DateTime SensorNetworkCreatedDateTime { get; set; }
-    
-        public virtual WsnDomain WsnDomain { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WsnCoordinator> WsnCoordinators { get; set; }
+        public string WsnDomainName { get; set; }
     }
 }

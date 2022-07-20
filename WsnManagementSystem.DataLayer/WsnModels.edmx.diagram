@@ -15,10 +15,8 @@
         <EntityTypeShape EntityType="WsnDbModel.RouterSensor" Width="1.5" PointX="14.25" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WsnDbModel.SensorMeasurement" Width="1.5" PointX="17.25" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="WsnDbModel.SensorMeasurementType" Width="1.5" PointX="15" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WsnDbModel.SensorNetwork" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="WsnDbModel.Sensor" Width="1.5" PointX="12" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WsnDbModel.WsnDomain" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="WsnDbModel.WsnStatu" Width="1.5" PointX="5.75" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="WsnDbModel.FK_Cities_CountryID" ManuallyRouted="false" />
         <AssociationConnector Association="WsnDbModel.FK_Coordinators_CityID" ManuallyRouted="false" />
         <AssociationConnector Association="WsnDbModel.FK_Counties_CityID" ManuallyRouted="false" />
@@ -38,12 +36,12 @@
         <AssociationConnector Association="WsnDbModel.FK_RouterSensors_SensorID" ManuallyRouted="false" />
         <AssociationConnector Association="WsnDbModel.FK_SensorMeasurements_SensorID" ManuallyRouted="false" />
         <AssociationConnector Association="WsnDbModel.FK_SensorMeasurements_SensorMeasurementTypeID" ManuallyRouted="false" />
-        <AssociationConnector Association="WsnDbModel.FK_SensorNetworks_WsnDomainID" ManuallyRouted="false" />
-        <AssociationConnector Association="WsnDbModel.FK_SensorNetworks_WsnStatueID" ManuallyRouted="false" />
         <EntityTypeShape EntityType="WsnDbModel.WsnCoordinator" Width="1.5" PointX="15" PointY="0.75" />
         <AssociationConnector Association="WsnDbModel.WsnCoordinators_CoordinatorID" />
+        <EntityTypeShape EntityType="WsnDbModel.SensorNetwork" Width="1.5" PointX="8" PointY="1.125" />
+        <AssociationConnector Association="WsnDbModel.FK_SensorNetworks_WsnDomainID" />
         <AssociationConnector Association="WsnDbModel.WsnCoordinators_WsnSensorNetworkID" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

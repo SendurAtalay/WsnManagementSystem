@@ -109,9 +109,7 @@
           <Property Name="SensorNetworkName" Type="varchar" MaxLength="100" />
           <Property Name="SensorNetworkDescription" Type="varchar" MaxLength="150" />
           <Property Name="DomainID" Type="int" />
-          <Property Name="StatueID" Type="int" />
-          <Property Name="SensorMeasurementDateTime" Type="datetime" Nullable="false" />
-          <Property Name="CoordinatorID" Type="int" />
+          <Property Name="SensorNetworkCreatedDateTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Sensors">
           <Key>
@@ -137,13 +135,6 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
           </Key>
           <Property Name="WsnDomainID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WsnDomainName" Type="varchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="WsnStatus">
-          <Key>
-            <PropertyRef Name="WsnStatueID" />
-          </Key>
-          <Property Name="WsnStatueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="WsnStatueName" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_Cities_CountryID">
           <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
@@ -385,18 +376,6 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SensorNetworks_WsnStatueID">
-          <End Role="WsnStatus" Type="Self.WsnStatus" Multiplicity="0..1" />
-          <End Role="SensorNetworks" Type="Self.SensorNetworks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WsnStatus">
-              <PropertyRef Name="WsnStatueID" />
-            </Principal>
-            <Dependent Role="SensorNetworks">
-              <PropertyRef Name="StatueID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="WsnCoordinators_CoordinatorID">
           <End Role="Coordinators" Type="Self.Coordinators" Multiplicity="0..1" />
           <End Role="WsnCoordinators" Type="Self.WsnCoordinators" Multiplicity="*" />
@@ -421,6 +400,8 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SP_Cities" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_SensorNetworks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="WsnDbModelStoreContainer">
           <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Coordinators" EntityType="Self.Coordinators" Schema="dbo" store:Type="Tables" />
@@ -435,7 +416,6 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
           <EntitySet Name="SensorNetworks" EntityType="Self.SensorNetworks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sensors" EntityType="Self.Sensors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WsnDomains" EntityType="Self.WsnDomains" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WsnStatus" EntityType="Self.WsnStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WsnCoordinators" EntityType="Self.WsnCoordinators" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [WsnCoordinators].[Id] AS [Id], 
@@ -521,10 +501,6 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
           </AssociationSet>
           <AssociationSet Name="FK_SensorNetworks_WsnDomainID" Association="Self.FK_SensorNetworks_WsnDomainID">
             <End Role="WsnDomains" EntitySet="WsnDomains" />
-            <End Role="SensorNetworks" EntitySet="SensorNetworks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SensorNetworks_WsnStatueID" Association="Self.FK_SensorNetworks_WsnStatueID">
-            <End Role="WsnStatus" EntitySet="WsnStatus" />
             <End Role="SensorNetworks" EntitySet="SensorNetworks" />
           </AssociationSet>
           <AssociationSet Name="WsnCoordinators_CoordinatorID" Association="Self.WsnCoordinators_CoordinatorID">
@@ -672,21 +648,6 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
           <NavigationProperty Name="DefinationOfSensorMeasurements" Relationship="Self.FK_DefinationOfSensorMeasurement_SensorMeasurementTypeID" FromRole="SensorMeasurementTypes" ToRole="DefinationOfSensorMeasurement" />
           <NavigationProperty Name="SensorMeasurements" Relationship="Self.FK_SensorMeasurements_SensorMeasurementTypeID" FromRole="SensorMeasurementTypes" ToRole="SensorMeasurements" />
         </EntityType>
-        <EntityType Name="SensorNetwork">
-          <Key>
-            <PropertyRef Name="SensorNetworkID" />
-          </Key>
-          <Property Name="SensorNetworkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SensorNetworkName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="SensorNetworkDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="DomainID" Type="Int32" />
-          <Property Name="StatueID" Type="Int32" />
-          <Property Name="SensorMeasurementDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CoordinatorID" Type="Int32" />
-          <NavigationProperty Name="WsnDomain" Relationship="Self.FK_SensorNetworks_WsnDomainID" FromRole="SensorNetworks" ToRole="WsnDomains" />
-          <NavigationProperty Name="WsnStatu" Relationship="Self.FK_SensorNetworks_WsnStatueID" FromRole="SensorNetworks" ToRole="WsnStatus" />
-          <NavigationProperty Name="WsnCoordinators" Relationship="WsnDbModel.WsnCoordinators_WsnSensorNetworkID" FromRole="SensorNetwork" ToRole="WsnCoordinator" />
-        </EntityType>
         <EntityType Name="Sensor">
           <Key>
             <PropertyRef Name="SensorID" />
@@ -704,15 +665,7 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
           </Key>
           <Property Name="WsnDomainID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="WsnDomainName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SensorNetworks" Relationship="Self.FK_SensorNetworks_WsnDomainID" FromRole="WsnDomains" ToRole="SensorNetworks" />
-        </EntityType>
-        <EntityType Name="WsnStatu">
-          <Key>
-            <PropertyRef Name="WsnStatueID" />
-          </Key>
-          <Property Name="WsnStatueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="WsnStatueName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SensorNetworks" Relationship="Self.FK_SensorNetworks_WsnStatueID" FromRole="WsnStatus" ToRole="SensorNetworks" />
+          <NavigationProperty Name="SensorNetworks" Relationship="WsnDbModel.FK_SensorNetworks_WsnDomainID" FromRole="WsnDomain" ToRole="SensorNetwork" />
         </EntityType>
         <Association Name="FK_Cities_CountryID">
           <End Role="Countries" Type="Self.Country" Multiplicity="0..1" />
@@ -942,30 +895,6 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SensorNetworks_WsnDomainID">
-          <End Role="WsnDomains" Type="Self.WsnDomain" Multiplicity="0..1" />
-          <End Role="SensorNetworks" Type="Self.SensorNetwork" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WsnDomains">
-              <PropertyRef Name="WsnDomainID" />
-            </Principal>
-            <Dependent Role="SensorNetworks">
-              <PropertyRef Name="DomainID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SensorNetworks_WsnStatueID">
-          <End Role="WsnStatus" Type="Self.WsnStatu" Multiplicity="0..1" />
-          <End Role="SensorNetworks" Type="Self.SensorNetwork" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WsnStatus">
-              <PropertyRef Name="WsnStatueID" />
-            </Principal>
-            <Dependent Role="SensorNetworks">
-              <PropertyRef Name="StatueID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="WsnDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="Coordinators" EntityType="Self.Coordinator" />
@@ -977,10 +906,8 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
           <EntitySet Name="RouterSensors" EntityType="Self.RouterSensor" />
           <EntitySet Name="SensorMeasurements" EntityType="Self.SensorMeasurement" />
           <EntitySet Name="SensorMeasurementTypes" EntityType="Self.SensorMeasurementType" />
-          <EntitySet Name="SensorNetworks" EntityType="Self.SensorNetwork" />
           <EntitySet Name="Sensors" EntityType="Self.Sensor" />
           <EntitySet Name="WsnDomains" EntityType="Self.WsnDomain" />
-          <EntitySet Name="WsnStatus" EntityType="Self.WsnStatu" />
           <AssociationSet Name="FK_Cities_CountryID" Association="Self.FK_Cities_CountryID">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Cities" EntitySet="Cities" />
@@ -1057,23 +984,22 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
             <End Role="SensorMeasurementTypes" EntitySet="SensorMeasurementTypes" />
             <End Role="SensorMeasurements" EntitySet="SensorMeasurements" />
           </AssociationSet>
-          <AssociationSet Name="FK_SensorNetworks_WsnDomainID" Association="Self.FK_SensorNetworks_WsnDomainID">
-            <End Role="WsnDomains" EntitySet="WsnDomains" />
-            <End Role="SensorNetworks" EntitySet="SensorNetworks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SensorNetworks_WsnStatueID" Association="Self.FK_SensorNetworks_WsnStatueID">
-            <End Role="WsnStatus" EntitySet="WsnStatus" />
-            <End Role="SensorNetworks" EntitySet="SensorNetworks" />
-          </AssociationSet>
           <EntitySet Name="WsnCoordinators" EntityType="WsnDbModel.WsnCoordinator" />
           <AssociationSet Name="WsnCoordinators_CoordinatorID" Association="WsnDbModel.WsnCoordinators_CoordinatorID">
             <End Role="Coordinator" EntitySet="Coordinators" />
             <End Role="WsnCoordinator" EntitySet="WsnCoordinators" />
           </AssociationSet>
+          <FunctionImport Name="SP_Cities" ReturnType="Collection(WsnDbModel.SP_Cities_Result)" />
+          <EntitySet Name="SensorNetworks" EntityType="WsnDbModel.SensorNetwork" />
+          <AssociationSet Name="FK_SensorNetworks_WsnDomainID" Association="WsnDbModel.FK_SensorNetworks_WsnDomainID">
+            <End Role="WsnDomain" EntitySet="WsnDomains" />
+            <End Role="SensorNetwork" EntitySet="SensorNetworks" />
+          </AssociationSet>
           <AssociationSet Name="WsnCoordinators_WsnSensorNetworkID" Association="WsnDbModel.WsnCoordinators_WsnSensorNetworkID">
             <End Role="SensorNetwork" EntitySet="SensorNetworks" />
             <End Role="WsnCoordinator" EntitySet="WsnCoordinators" />
           </AssociationSet>
+          <FunctionImport Name="SP_SensorNetworks" ReturnType="Collection(WsnDbModel.SP_SensorNetworks_Result)" />
         </EntityContainer>
         <EntityType Name="WsnCoordinator">
           <Key>
@@ -1097,6 +1023,36 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SP_Cities_Result">
+          <Property Type="Int32" Name="CityID" Nullable="false" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CountryID" Nullable="true" />
+          <Property Type="String" Name="CountryName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="SensorNetwork">
+          <Key>
+            <PropertyRef Name="SensorNetworkID" />
+          </Key>
+          <Property Name="SensorNetworkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SensorNetworkName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SensorNetworkDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DomainID" Type="Int32" />
+          <Property Name="SensorNetworkCreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="WsnDomain" Relationship="WsnDbModel.FK_SensorNetworks_WsnDomainID" FromRole="SensorNetwork" ToRole="WsnDomain" />
+          <NavigationProperty Name="WsnCoordinators" Relationship="WsnDbModel.WsnCoordinators_WsnSensorNetworkID" FromRole="SensorNetwork" ToRole="WsnCoordinator" />
+        </EntityType>
+        <Association Name="FK_SensorNetworks_WsnDomainID">
+          <End Type="WsnDbModel.WsnDomain" Role="WsnDomain" Multiplicity="0..1" />
+          <End Type="WsnDbModel.SensorNetwork" Role="SensorNetwork" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WsnDomain">
+              <PropertyRef Name="WsnDomainID" />
+            </Principal>
+            <Dependent Role="SensorNetwork">
+              <PropertyRef Name="DomainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="WsnCoordinators_WsnSensorNetworkID">
           <End Type="WsnDbModel.SensorNetwork" Role="SensorNetwork" Multiplicity="0..1" />
           <End Type="WsnDbModel.WsnCoordinator" Role="WsnCoordinator" Multiplicity="*" />
@@ -1109,6 +1065,14 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SP_SensorNetworks_Result">
+          <Property Type="Int32" Name="SensorNetworkID" Nullable="false" />
+          <Property Type="String" Name="SensorNetworkName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SensorNetworkDescription" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="DomainID" Nullable="true" />
+          <Property Type="DateTime" Name="SensorNetworkCreatedDateTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="WsnDomainName" Nullable="true" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1221,19 +1185,6 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SensorNetworks">
-            <EntityTypeMapping TypeName="WsnDbModel.SensorNetwork">
-              <MappingFragment StoreEntitySet="SensorNetworks">
-                <ScalarProperty Name="SensorNetworkID" ColumnName="SensorNetworkID" />
-                <ScalarProperty Name="SensorNetworkName" ColumnName="SensorNetworkName" />
-                <ScalarProperty Name="SensorNetworkDescription" ColumnName="SensorNetworkDescription" />
-                <ScalarProperty Name="DomainID" ColumnName="DomainID" />
-                <ScalarProperty Name="StatueID" ColumnName="StatueID" />
-                <ScalarProperty Name="SensorMeasurementDateTime" ColumnName="SensorMeasurementDateTime" />
-                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Sensors">
             <EntityTypeMapping TypeName="WsnDbModel.Sensor">
               <MappingFragment StoreEntitySet="Sensors">
@@ -1251,14 +1202,6 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WsnStatus">
-            <EntityTypeMapping TypeName="WsnDbModel.WsnStatu">
-              <MappingFragment StoreEntitySet="WsnStatus">
-                <ScalarProperty Name="WsnStatueID" ColumnName="WsnStatueID" />
-                <ScalarProperty Name="WsnStatueName" ColumnName="WsnStatueName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WsnCoordinators">
             <EntityTypeMapping TypeName="WsnDbModel.WsnCoordinator">
               <MappingFragment StoreEntitySet="WsnCoordinators">
@@ -1268,6 +1211,39 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_Cities" FunctionName="WsnDbModel.Store.SP_Cities">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WsnDbModel.SP_Cities_Result">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="SensorNetworks">
+            <EntityTypeMapping TypeName="WsnDbModel.SensorNetwork">
+              <MappingFragment StoreEntitySet="SensorNetworks">
+                <ScalarProperty Name="SensorNetworkCreatedDateTime" ColumnName="SensorNetworkCreatedDateTime" />
+                <ScalarProperty Name="DomainID" ColumnName="DomainID" />
+                <ScalarProperty Name="SensorNetworkDescription" ColumnName="SensorNetworkDescription" />
+                <ScalarProperty Name="SensorNetworkName" ColumnName="SensorNetworkName" />
+                <ScalarProperty Name="SensorNetworkID" ColumnName="SensorNetworkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_SensorNetworks" FunctionName="WsnDbModel.Store.SP_SensorNetworks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WsnDbModel.SP_SensorNetworks_Result">
+                <ScalarProperty Name="SensorNetworkID" ColumnName="SensorNetworkID" />
+                <ScalarProperty Name="SensorNetworkName" ColumnName="SensorNetworkName" />
+                <ScalarProperty Name="SensorNetworkDescription" ColumnName="SensorNetworkDescription" />
+                <ScalarProperty Name="DomainID" ColumnName="DomainID" />
+                <ScalarProperty Name="SensorNetworkCreatedDateTime" ColumnName="SensorNetworkCreatedDateTime" />
+                <ScalarProperty Name="WsnDomainName" ColumnName="WsnDomainName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

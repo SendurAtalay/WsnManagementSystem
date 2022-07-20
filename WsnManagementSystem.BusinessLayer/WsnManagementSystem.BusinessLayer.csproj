@@ -65,9 +65,9 @@
     <Compile Include="Repository\Concrete\SensorMeasurementBusiness.cs" />
     <Compile Include="Repository\Concrete\SensorMeasurementTypeBusiness.cs" />
     <Compile Include="Repository\Concrete\SensorNetworkBusiness.cs" />
+    <Compile Include="Repository\Concrete\SP_SensorNetworks_Result.cs" />
     <Compile Include="Repository\Concrete\WsnCoordinatorBusiness.cs" />
     <Compile Include="Repository\Concrete\WsnDomainsBusiness.cs" />
-    <Compile Include="Repository\Concrete\WsnStatueBusiness.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -80,5 +80,14 @@ namespace WsnManagementSystem.BusinessLayer.Repository.Concrete
                 db.SaveChanges();
             }
         }
+        public List<SP_SensorNetworks_Result> GetSensorNetworks()
+        {
+            using (var db = new WsnDbEntities())
+            {
+                return db.SP_SensorNetworks().ToList();
+
+            }
+        }
+
     }
 }

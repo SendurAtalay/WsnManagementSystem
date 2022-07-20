@@ -87,6 +87,12 @@
     <Compile Include="SensorNetwork.cs">
       <DependentUpon>WsnModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_Cities_Result.cs">
+      <DependentUpon>WsnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SensorNetworks_Result.cs">
+      <DependentUpon>WsnModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="WsnCoordinator.cs">
       <DependentUpon>WsnModels.tt</DependentUpon>
     </Compile>
@@ -107,9 +113,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WsnModels.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="WsnStatu.cs">
-      <DependentUpon>WsnModels.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

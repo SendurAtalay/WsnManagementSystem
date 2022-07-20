@@ -12,6 +12,8 @@ namespace WsnManagementSystem.DataLayer
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class WsnDbEntities : DbContext
     {
@@ -35,10 +37,19 @@ namespace WsnManagementSystem.DataLayer
         public virtual DbSet<RouterSensor> RouterSensors { get; set; }
         public virtual DbSet<SensorMeasurement> SensorMeasurements { get; set; }
         public virtual DbSet<SensorMeasurementType> SensorMeasurementTypes { get; set; }
-        public virtual DbSet<SensorNetwork> SensorNetworks { get; set; }
         public virtual DbSet<Sensor> Sensors { get; set; }
         public virtual DbSet<WsnDomain> WsnDomains { get; set; }
-        public virtual DbSet<WsnStatu> WsnStatus { get; set; }
         public virtual DbSet<WsnCoordinator> WsnCoordinators { get; set; }
+        public virtual DbSet<SensorNetwork> SensorNetworks { get; set; }
+    
+        public virtual ObjectResult<SP_Cities_Result> SP_Cities()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_Cities_Result>("SP_Cities");
+        }
+    
+        public virtual ObjectResult<SP_SensorNetworks_Result> SP_SensorNetworks()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SensorNetworks_Result>("SP_SensorNetworks");
+        }
     }
 }
