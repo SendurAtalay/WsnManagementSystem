@@ -80,5 +80,20 @@ namespace WsnManagementSystem.BusinessLayer.Repository.Concrete
                 db.SaveChanges();
             }
         }
+        public List<SP_GetCounties_Result> GetCounties()
+        {
+            using (var db = new WsnDbEntities())
+            {
+                return db.SP_GetCounties().ToList();
+
+            }
+        }
+        public List<County> GetCountiesByCity(int cityID)
+        {
+            using (var db = new WsnDbEntities())
+            {
+                return db.Counties.Where(c => c.CityID == cityID).ToList();
+            }
+        }
     }
 }

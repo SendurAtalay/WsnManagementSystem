@@ -80,5 +80,13 @@ namespace WsnManagementSystem.BusinessLayer.Repository.Concrete
                 db.SaveChanges();
             }
         }
+        public List<SP_DefinationOfSensorMeasurement_Result> DefinationOfSensorMeasurement()
+        {
+            using (var db = new WsnDbEntities())
+            {
+                return db.SP_DefinationOfSensorMeasurement().ToList();
+
+            }
+        }
     }
 }

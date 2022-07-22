@@ -401,6 +401,14 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Function Name="SP_Cities" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_DefinationOfSensorMeasurement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetCoordinators" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetCounties" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetDistricts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetRouters" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetRouterSensors" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetSensorMeasurements" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetWsnCoordinators" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_SensorNetworks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="WsnDbModelStoreContainer">
           <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
@@ -1000,6 +1008,14 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
             <End Role="WsnCoordinator" EntitySet="WsnCoordinators" />
           </AssociationSet>
           <FunctionImport Name="SP_SensorNetworks" ReturnType="Collection(WsnDbModel.SP_SensorNetworks_Result)" />
+          <FunctionImport Name="SP_GetCounties" ReturnType="Collection(WsnDbModel.SP_GetCounties_Result)" />
+          <FunctionImport Name="SP_GetDistricts" ReturnType="Collection(WsnDbModel.SP_GetDistricts_Result)" />
+          <FunctionImport Name="SP_GetCoordinators" ReturnType="Collection(WsnDbModel.SP_GetCoordinators_Result)" />
+          <FunctionImport Name="SP_DefinationOfSensorMeasurement" ReturnType="Collection(WsnDbModel.SP_DefinationOfSensorMeasurement_Result)" />
+          <FunctionImport Name="SP_GetWsnCoordinators" ReturnType="Collection(WsnDbModel.SP_GetWsnCoordinators_Result)" />
+          <FunctionImport Name="SP_GetRouterSensors" ReturnType="Collection(WsnDbModel.SP_GetRouterSensors_Result)" />
+          <FunctionImport Name="SP_GetRouters" ReturnType="Collection(WsnDbModel.SP_GetRouters_Result)" />
+          <FunctionImport Name="SP_GetSensorMeasurements" ReturnType="Collection(WsnDbModel.SP_GetSensorMeasurements_Result)" />
         </EntityContainer>
         <EntityType Name="WsnCoordinator">
           <Key>
@@ -1072,6 +1088,83 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
           <Property Type="Int32" Name="DomainID" Nullable="true" />
           <Property Type="DateTime" Name="SensorNetworkCreatedDateTime" Nullable="false" Precision="23" />
           <Property Type="String" Name="WsnDomainName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_GetCounties_Result">
+          <Property Type="Int32" Name="CountyID" Nullable="false" />
+          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CityID" Nullable="true" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_GetDistricts_Result">
+          <Property Type="Int32" Name="DistrictID" Nullable="false" />
+          <Property Type="String" Name="DistrictName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CountyID" Nullable="true" />
+          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_GetCoordinators_Result">
+          <Property Type="Int32" Name="CoordinatorID" Nullable="false" />
+          <Property Type="String" Name="CoordinatorName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CoordinatorDescription" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="CountryID" Nullable="true" />
+          <Property Type="Int32" Name="CityID" Nullable="true" />
+          <Property Type="Int32" Name="CountyID" Nullable="true" />
+          <Property Type="Int32" Name="DistrictID" Nullable="true" />
+          <Property Type="String" Name="Latitude" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Longtitude" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CountryName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DistrictName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_DefinationOfSensorMeasurement_Result">
+          <Property Type="Int32" Name="DefinationOfSensorMeasurementID" Nullable="false" />
+          <Property Type="Int32" Name="SensorID" Nullable="true" />
+          <Property Type="Int32" Name="SensorMeasurementTypeID" Nullable="true" />
+          <Property Type="String" Name="DataTypeOfMeasurement" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SensorName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SensorMeasurementTypeName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_GetWsnCoordinators_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="WsnSensorNetworkID" Nullable="true" />
+          <Property Type="Int32" Name="CoordinatorID" Nullable="true" />
+          <Property Type="String" Name="CoordinatorName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="sensorNetworkName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_GetRouterSensors_Result">
+          <Property Type="Int32" Name="RouterSensorID" Nullable="false" />
+          <Property Type="Int32" Name="RouterID" Nullable="true" />
+          <Property Type="Int32" Name="SensorID" Nullable="true" />
+          <Property Type="String" Name="RouterName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SensorName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_GetRouters_Result">
+          <Property Type="Int32" Name="RouterID" Nullable="false" />
+          <Property Type="String" Name="RouterName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="RouterDescription" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CountryID" Nullable="true" />
+          <Property Type="Int32" Name="CityID" Nullable="true" />
+          <Property Type="Int32" Name="CountyID" Nullable="true" />
+          <Property Type="Int32" Name="DistrictID" Nullable="true" />
+          <Property Type="String" Name="Latitude" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Longtitude" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CoordinatorID" Nullable="true" />
+          <Property Type="String" Name="CountryName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CountyName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="DistrictName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CoordinatorName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_GetSensorMeasurements_Result">
+          <Property Type="Int32" Name="SensorMeasurementID" Nullable="false" />
+          <Property Type="Int32" Name="SensorID" Nullable="true" />
+          <Property Type="Int32" Name="RouterID" Nullable="true" />
+          <Property Type="Int32" Name="SensorMeasurementTypeID" Nullable="true" />
+          <Property Type="DateTime" Name="SensorMeasurementDateTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="SensorMeasurementValue" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="RouterName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SensorMeasurementTypeName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SensorName" Nullable="false" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1241,6 +1334,115 @@ warning 6002: The table/view 'WsnDb.dbo.WsnCoordinators' does not have a primary
                 <ScalarProperty Name="DomainID" ColumnName="DomainID" />
                 <ScalarProperty Name="SensorNetworkCreatedDateTime" ColumnName="SensorNetworkCreatedDateTime" />
                 <ScalarProperty Name="WsnDomainName" ColumnName="WsnDomainName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetCounties" FunctionName="WsnDbModel.Store.SP_GetCounties">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WsnDbModel.SP_GetCounties_Result">
+                <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetDistricts" FunctionName="WsnDbModel.Store.SP_GetDistricts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WsnDbModel.SP_GetDistricts_Result">
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetCoordinators" FunctionName="WsnDbModel.Store.SP_GetCoordinators">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WsnDbModel.SP_GetCoordinators_Result">
+                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+                <ScalarProperty Name="CoordinatorName" ColumnName="CoordinatorName" />
+                <ScalarProperty Name="CoordinatorDescription" ColumnName="CoordinatorDescription" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_DefinationOfSensorMeasurement" FunctionName="WsnDbModel.Store.SP_DefinationOfSensorMeasurement">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WsnDbModel.SP_DefinationOfSensorMeasurement_Result">
+                <ScalarProperty Name="DefinationOfSensorMeasurementID" ColumnName="DefinationOfSensorMeasurementID" />
+                <ScalarProperty Name="SensorID" ColumnName="SensorID" />
+                <ScalarProperty Name="SensorMeasurementTypeID" ColumnName="SensorMeasurementTypeID" />
+                <ScalarProperty Name="DataTypeOfMeasurement" ColumnName="DataTypeOfMeasurement" />
+                <ScalarProperty Name="SensorName" ColumnName="SensorName" />
+                <ScalarProperty Name="SensorMeasurementTypeName" ColumnName="SensorMeasurementTypeName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetWsnCoordinators" FunctionName="WsnDbModel.Store.SP_GetWsnCoordinators">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WsnDbModel.SP_GetWsnCoordinators_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="WsnSensorNetworkID" ColumnName="WsnSensorNetworkID" />
+                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+                <ScalarProperty Name="CoordinatorName" ColumnName="CoordinatorName" />
+                <ScalarProperty Name="sensorNetworkName" ColumnName="sensorNetworkName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetRouterSensors" FunctionName="WsnDbModel.Store.SP_GetRouterSensors">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WsnDbModel.SP_GetRouterSensors_Result">
+                <ScalarProperty Name="RouterSensorID" ColumnName="RouterSensorID" />
+                <ScalarProperty Name="RouterID" ColumnName="RouterID" />
+                <ScalarProperty Name="SensorID" ColumnName="SensorID" />
+                <ScalarProperty Name="RouterName" ColumnName="RouterName" />
+                <ScalarProperty Name="SensorName" ColumnName="SensorName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetRouters" FunctionName="WsnDbModel.Store.SP_GetRouters">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WsnDbModel.SP_GetRouters_Result">
+                <ScalarProperty Name="RouterID" ColumnName="RouterID" />
+                <ScalarProperty Name="RouterName" ColumnName="RouterName" />
+                <ScalarProperty Name="RouterDescription" ColumnName="RouterDescription" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+                <ScalarProperty Name="CoordinatorID" ColumnName="CoordinatorID" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="CoordinatorName" ColumnName="CoordinatorName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetSensorMeasurements" FunctionName="WsnDbModel.Store.SP_GetSensorMeasurements">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WsnDbModel.SP_GetSensorMeasurements_Result">
+                <ScalarProperty Name="SensorMeasurementID" ColumnName="SensorMeasurementID" />
+                <ScalarProperty Name="SensorID" ColumnName="SensorID" />
+                <ScalarProperty Name="RouterID" ColumnName="RouterID" />
+                <ScalarProperty Name="SensorMeasurementTypeID" ColumnName="SensorMeasurementTypeID" />
+                <ScalarProperty Name="SensorMeasurementDateTime" ColumnName="SensorMeasurementDateTime" />
+                <ScalarProperty Name="SensorMeasurementValue" ColumnName="SensorMeasurementValue" />
+                <ScalarProperty Name="RouterName" ColumnName="RouterName" />
+                <ScalarProperty Name="SensorMeasurementTypeName" ColumnName="SensorMeasurementTypeName" />
+                <ScalarProperty Name="SensorName" ColumnName="SensorName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

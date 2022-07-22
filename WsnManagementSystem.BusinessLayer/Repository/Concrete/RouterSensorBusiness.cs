@@ -80,5 +80,13 @@ namespace WsnManagementSystem.BusinessLayer.Repository.Concrete
                 db.SaveChanges();
             }
         }
+        public List<SP_GetRouterSensors_Result> GetRouterSensors()
+        {
+            using (var db = new WsnDbEntities())
+            {
+                return db.SP_GetRouterSensors().ToList();
+
+            }
+        }
     }
 }

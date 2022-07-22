@@ -51,5 +51,45 @@ namespace WsnManagementSystem.DataLayer
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SensorNetworks_Result>("SP_SensorNetworks");
         }
+    
+        public virtual ObjectResult<SP_GetCounties_Result> SP_GetCounties()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetCounties_Result>("SP_GetCounties");
+        }
+    
+        public virtual ObjectResult<SP_GetDistricts_Result> SP_GetDistricts()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetDistricts_Result>("SP_GetDistricts");
+        }
+    
+        public virtual ObjectResult<SP_GetCoordinators_Result> SP_GetCoordinators()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetCoordinators_Result>("SP_GetCoordinators");
+        }
+    
+        public virtual ObjectResult<SP_DefinationOfSensorMeasurement_Result> SP_DefinationOfSensorMeasurement()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_DefinationOfSensorMeasurement_Result>("SP_DefinationOfSensorMeasurement");
+        }
+    
+        public virtual ObjectResult<SP_GetWsnCoordinators_Result> SP_GetWsnCoordinators()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetWsnCoordinators_Result>("SP_GetWsnCoordinators");
+        }
+    
+        public virtual ObjectResult<SP_GetRouterSensors_Result> SP_GetRouterSensors()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetRouterSensors_Result>("SP_GetRouterSensors");
+        }
+    
+        public virtual ObjectResult<SP_GetRouters_Result> SP_GetRouters()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetRouters_Result>("SP_GetRouters");
+        }
+    
+        public virtual ObjectResult<SP_GetSensorMeasurements_Result> SP_GetSensorMeasurements()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetSensorMeasurements_Result>("SP_GetSensorMeasurements");
+        }
     }
 }

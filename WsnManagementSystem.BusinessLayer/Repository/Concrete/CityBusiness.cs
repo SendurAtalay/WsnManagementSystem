@@ -88,5 +88,12 @@ namespace WsnManagementSystem.BusinessLayer.Repository.Concrete
                 return db.SP_Cities().ToList();
             }
         }
+        public List<City> GetCitiesByCountry(int countryID)
+        {
+            using (var db = new WsnDbEntities())
+            {
+                return db.Cities.Where(c=>c.CountryID == countryID).ToList();
+            }
+        }
     }
 }

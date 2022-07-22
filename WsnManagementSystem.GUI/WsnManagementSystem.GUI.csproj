@@ -62,11 +62,35 @@
     <Compile Include="CityForm.Designer.cs">
       <DependentUpon>CityForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CoordinatorsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CoordinatorsForm.Designer.cs">
+      <DependentUpon>CoordinatorsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CountiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CountiesForm.Designer.cs">
+      <DependentUpon>CountiesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Countries.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Countries.Designer.cs">
       <DependentUpon>Countries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DefinationOfSensorMeasurementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DefinationOfSensorMeasurementForm.Designer.cs">
+      <DependentUpon>DefinationOfSensorMeasurementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DistrictsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DistrictsForm.Designer.cs">
+      <DependentUpon>DistrictsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -76,6 +100,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouterSensorsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RouterSensorsForm.Designer.cs">
+      <DependentUpon>RouterSensorsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoutersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoutersForm.Designer.cs">
+      <DependentUpon>RoutersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorMeasurementsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorMeasurementsForm.Designer.cs">
+      <DependentUpon>SensorMeasurementsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SensorNetworksForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +136,12 @@
     <Compile Include="Sensors.Designer.cs">
       <DependentUpon>Sensors.cs</DependentUpon>
     </Compile>
+    <Compile Include="WsnCoordinatorsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WsnCoordinatorsForm.Designer.cs">
+      <DependentUpon>WsnCoordinatorsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WsnDomains.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,8 +151,20 @@
     <EmbeddedResource Include="CityForm.resx">
       <DependentUpon>CityForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CoordinatorsForm.resx">
+      <DependentUpon>CoordinatorsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CountiesForm.resx">
+      <DependentUpon>CountiesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Countries.resx">
       <DependentUpon>Countries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefinationOfSensorMeasurementForm.resx">
+      <DependentUpon>DefinationOfSensorMeasurementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DistrictsForm.resx">
+      <DependentUpon>DistrictsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -118,6 +178,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RouterSensorsForm.resx">
+      <DependentUpon>RouterSensorsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoutersForm.resx">
+      <DependentUpon>RoutersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorMeasurementsForm.resx">
+      <DependentUpon>SensorMeasurementsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SensorNetworksForm.resx">
       <DependentUpon>SensorNetworksForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sensors.resx">
       <DependentUpon>Sensors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WsnCoordinatorsForm.resx">
+      <DependentUpon>WsnCoordinatorsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WsnDomains.resx">
       <DependentUpon>WsnDomains.cs</DependentUpon>

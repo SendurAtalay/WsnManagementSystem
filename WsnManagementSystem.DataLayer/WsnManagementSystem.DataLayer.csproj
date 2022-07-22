@@ -90,6 +90,30 @@
     <Compile Include="SP_Cities_Result.cs">
       <DependentUpon>WsnModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_DefinationOfSensorMeasurement_Result.cs">
+      <DependentUpon>WsnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetCoordinators_Result.cs">
+      <DependentUpon>WsnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetCounties_Result.cs">
+      <DependentUpon>WsnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetDistricts_Result.cs">
+      <DependentUpon>WsnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetRouterSensors_Result.cs">
+      <DependentUpon>WsnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetRouters_Result.cs">
+      <DependentUpon>WsnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetSensorMeasurements_Result.cs">
+      <DependentUpon>WsnModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GetWsnCoordinators_Result.cs">
+      <DependentUpon>WsnModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_SensorNetworks_Result.cs">
       <DependentUpon>WsnModels.tt</DependentUpon>
     </Compile>

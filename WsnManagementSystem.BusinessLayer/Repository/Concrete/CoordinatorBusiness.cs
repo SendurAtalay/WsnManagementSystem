@@ -80,5 +80,13 @@ namespace WsnManagementSystem.BusinessLayer.Repository.Concrete
                 db.SaveChanges();
             }
         }
+        public List<SP_GetCoordinators_Result> GetCoordinators()
+        {
+            using (var db = new WsnDbEntities())
+            {
+                return db.SP_GetCoordinators().ToList();
+
+            }
+        }
     }
 }
